@@ -4,7 +4,12 @@ import styles from './FileSidebar.module.scss'
 
 const FileSidebar = () => {
   return (
-    <div>FileSidebar</div>
+    <div className={styles.container}>
+      <div className={styles.folder_name_area}>
+        {/* {folder.name} */}
+        project
+      </div>
+    </div>
   )
 }
 
