@@ -1,9 +1,16 @@
-.Signup {
+.signup {
+  position: absolute;
+  left: 0;
+  top:0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  //flex로 내부 중앙 정렬
   display: flex;
-  margin: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
 .container {
@@ -22,13 +29,13 @@ h1 {
   margin-bottom: 1.2rem;
 }
 
-form input {
+.formSignup input {
   width: 87%;
   outline: none;
   border: 1px solid #fff;
   padding: 12px 20px;
   margin-bottom: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background: #e4e4e4;
 }
 
@@ -47,5 +54,23 @@ form input {
 }
 
 .registerbtn:hover {
+  background: rgba(17,107,143,0.8);
+}
+
+.idcheck {
+  display: flex;
+  // flex-direction: row;
+}
+.checkbtn {
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  background: rgba(17,107,143);
+  width: 90px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.checkbtn:hover {
   background: rgba(17,107,143,0.8);
 }

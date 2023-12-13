@@ -7,7 +7,7 @@ import MainPage from './pages/MainPage/MainPage';
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<SignIn/>}/>
         <Route path="/main" element={<MainPage/>}/>
@@ -15,7 +15,7 @@ function App() {
         <Route path="/mypage" element={<Mypage/>}/>
       </Routes>
       
-    </div>
+    </>
   );
 }
 
