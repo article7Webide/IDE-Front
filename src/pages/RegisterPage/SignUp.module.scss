@@ -21,13 +21,15 @@
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+
+  h1 {
+    font-size: 2rem;
+    color: #07001f;
+    margin-bottom: 1.2rem;
+  }
 }
 
-h1 {
-  font-size: 2rem;
-  color: #07001f;
-  margin-bottom: 1.2rem;
-}
+
 
 .formSignup input {
   width: 87%;
