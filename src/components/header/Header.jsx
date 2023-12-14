@@ -4,7 +4,8 @@ import { IoMdMenu } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
 import { FaMessage } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
-import { LiaToggleOnSolid,LiaToggleOffSolid  } from "react-icons/lia";;
+import { LiaToggleOnSolid,LiaToggleOffSolid  } from "react-icons/lia";
+import { IoShareSocial } from "react-icons/io5";;
 
 const Header = () => {
 
@@ -25,6 +26,9 @@ const Header = () => {
         <div className={styles.right_side}>
           <button className={styles.icons}>
             <FiLogOut size={24} />
+          </button>
+          <button className={styles.icons}>
+            <IoShareSocial size={24} />
           </button>
           <button className={styles.icons}>
             <FaMessage size={24} />

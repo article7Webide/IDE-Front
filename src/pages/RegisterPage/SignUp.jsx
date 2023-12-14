@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './SignUp.module.scss';
 import { useNavigate } from 'react-router-dom';
