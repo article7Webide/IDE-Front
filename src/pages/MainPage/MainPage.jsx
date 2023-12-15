@@ -12,8 +12,8 @@ const MainPage = () => {
       <Header />
       <div className={styles.layout}>
         <FileSidebar />
-        <Directory />
-        {/* <CodeEditor /> */}
+        {/* <Directory /> */}
+        <CodeEditor />
       </div>
 
     </div>
