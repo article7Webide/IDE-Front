@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import styles from './Items.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 const Items = ({ project, title, type, key }) => {
+
+  const navigate = useNavigate();
 
   const fetchProjects = () => {
 
   }
 
   const handleEditpg = () => {
-
+    navigate('/editor', {state:{project}})
   }
 
 
