@@ -1,4 +1,4 @@
-// src/mocks/handlers/index.ts
+// src/mocks/handlers/index.js
 import { projects } from "./projects";
 import { userHandlers } from "./userHandlers";
 

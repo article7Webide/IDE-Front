@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import styles from './SignIn.module.scss';
 import { useNavigate } from "react-router-dom";
-import { response } from "msw";
+import { response } from 'msw';
 
 const SignIn = (props) => {
 
@@ -21,21 +21,6 @@ const SignIn = (props) => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleClick2 = () => {
-    fetch("./login",{
-      headers: {
-        Accept: "application / json",
-      },
-      method: "GET"
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        console.log(JSON.stringify(json));
-      });
-  };
-
   const checkSignIn = async () => {
     if (!loginValues.userId && !loginValues.password) {
       alert("아이디를 입력해주세요")
@@ -51,22 +36,32 @@ const SignIn = (props) => {
     }
     //api 연결
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         "http://localhost:3000/api/auth/login",
         {
           userId: loginValues.userId,
           password: loginValues.password,
         }
       );
-      if (response.status === 200) {
+      if (res.status === 200) {
         // 성공 로직
-        if (response.data && response.data.accessToken) {
-          localStorage.setItem("accessToken", response.data.accessToken);
-          localStorage.setItem('user', JSON.stringify(response.data))
+        if (res.data) {
+          const user = res.data[0];
+
+          localStorage.setItem('user', JSON.stringify(user))
           navigate("/main");
         } else {
           alert("로그인에 실패했습니다. 다시 시도해 주세요.");
         }
+
+
+        // if (response.data && response.data.accessToken) {
+        //   localStorage.setItem("accessToken", response.data.accessToken);
+        //   localStorage.setItem('user', JSON.stringify(response.data))
+        //   navigate("/main");
+        // } else {
+        //   alert("로그인에 실패했습니다. 다시 시도해 주세요.");
+        // }
       } else if (response.status === 401) {
         // 권한 없음, 로그인 실패 로직
         alert("이메일 또는 비밀번호가 일치하지 않습니다.");

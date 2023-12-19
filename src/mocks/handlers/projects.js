@@ -1,31 +1,37 @@
 import { rest } from 'msw';
 export const projects = [
 
-  // rest.post('/api/auth/login', async (req, res, ctx) => {
-  //   let dummyData = [
-  //     {
-  //       "id": "eunv0000",
-  //       "nickname": "eunv",
-  //       "member_idx": "randomIdx12",
-  //     }
-  //   ];
-  //   return res(
-  //     ctx.status(200),
-  //     ctx.json(dummyData),
-  //   );
-  // }),
-  // // GET method인 /get-names를 호출하면 다음과 같이 response가 되도록 mocking 정의
-  // rest.get('/api/auth/signup', (req, res, ctx) => {
-  //   const userInfo = [
-  //     {
-  //       "id": "eunv0000",
-  //       "nickname": "eunv",
-  //     }
-  //   ]
-  //   return res(
-  //     ctx.status(200),
-  //     ctx.json(userInfo),
-  //   )
-  // })
+  rest.get('/api/auth/projects', async (req, res, ctx) => {
+    let dummyData = [
+      {
+        directory_id: 1,
+        directory_title: "잘 되고있는거니",
+        member_idx: 1230,
+        create_data: "2023-12-1",
+        type: "public",
+      },
+      {
+        directory_id: 2,
+        directory_title: "집에 보내줘",
+        member_idx: 9034,
+        create_data: "2023-12-10",
+        type: "private",
+
+      },
+      {
+        directory_id: 3,
+        directory_title: "룰루",
+        member_idx: 3234,
+        create_data: "2023-12-19",
+        type: "public",
+
+      },
+
+    ];
+    return res(
+      ctx.status(200),
+      ctx.json(dummyData),
+    );
+  }),
 ]
 
