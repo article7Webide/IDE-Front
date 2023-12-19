@@ -14,7 +14,7 @@ const Items = () => {
 
   return (
     <div className={styles.container}>
-      hihi
+      
     </div>
   )
 }

@@ -31,7 +31,7 @@ const SignUp = () => {
       //api 연결
       try {
         const response = await axios.post(
-          'https://localhost:8080/auth/signup',
+          'https://localhost:3000/api/auth/signup',
           { userid }
         );
 

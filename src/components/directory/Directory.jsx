@@ -5,23 +5,13 @@ import CreateDir from './create-directory/CreateDir';
 
 const Directory = () => {
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <div className={styles.directory}>
       <div className={styles.container}>
         <div className={styles.note__title}>
-          <h1>Containers</h1>
-          <button onClick={openModal}>+</button>
-          <CreateDir closeModal={closeModal} modalOpen={modalOpen}/>
+          <h1>모든 컨테이너</h1>
+          <button >+ 새 컨테이너</button>
         </div>
         <hr />
         <Items />

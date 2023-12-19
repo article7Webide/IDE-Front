@@ -1,12 +1,9 @@
 import React from 'react'
 import styles from './CreateDir.module.scss'
-import Modal from 'react-modal'
 
-const CreateDir = ({ closeModal, modalOpen }) => {
+const CreateDir = ({ closeNewConainer, viewCreater }) => {
   return (
-    <Modal
-      isOpen={modalOpen}
-    >
+    <div>
       <div>
         <label>컨테이너 이름</label>
         <input
@@ -15,10 +12,8 @@ const CreateDir = ({ closeModal, modalOpen }) => {
         />
       </div>
 
-
-
-      <button onClick={closeModal}>x</button>
-    </Modal>
+      <button onClick={closeNewConainer}>x</button>
+    </div>
   )
 }
 

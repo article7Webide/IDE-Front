@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import styles from './SignIn.module.scss';
 import { useNavigate } from "react-router-dom";
+import { response } from "msw";
 
 const SignIn = (props) => {
 
@@ -20,24 +21,38 @@ const SignIn = (props) => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const handleClick2 = () => {
+    fetch("./login",{
+      headers: {
+        Accept: "application / json",
+      },
+      method: "GET"
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        console.log(JSON.stringify(json));
+      });
+  };
 
   const checkSignIn = async () => {
     if (!loginValues.userId && !loginValues.password) {
-      setErrorMessage("아이디를 입력해주세요")
+      alert("아이디를 입력해주세요")
       return
     }
     if (!loginValues.userId) {
-      setErrorMessage("아이디를 입력해주세요")
+      alert("아이디를 입력해주세요")
       return
     }
     if (!loginValues.password) {
-      setErrorMessage("비밀번호를 입력해주세요")
+      alert("비밀번호를 입력해주세요")
       return
     }
     //api 연결
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        "http://localhost:3000/api/auth/login",
         {
           userId: loginValues.userId,
           password: loginValues.password,
@@ -46,7 +61,7 @@ const SignIn = (props) => {
       if (response.status === 200) {
         // 성공 로직
         if (response.data && response.data.accessToken) {
-          localStorage.setItem("token", response.data.accessToken);
+          localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem('user', JSON.stringify(response.data))
           navigate("/main");
         } else {
