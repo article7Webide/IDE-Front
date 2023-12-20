@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from './Items.module.scss'
 import { useNavigate } from 'react-router-dom'
+import { MdPlayArrow } from "react-icons/md";
 
 const Items = ({ project, title, type, key }) => {
 
@@ -31,7 +32,7 @@ const Items = ({ project, title, type, key }) => {
           </span>
         </div>
         <div onClick={handleEditpg} className={styles.startbtn}>
-          실행
+        <MdPlayArrow />실행
         </div>
       </div>
 
