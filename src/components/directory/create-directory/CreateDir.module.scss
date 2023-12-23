@@ -1,0 +1,165 @@
+.container {
+  /* 모달창 크기 */
+  width: 100%;
+  height: 100vh;
+  /* 최상단 위치 */
+  z-index: 999;
+
+  /* 중앙 배치 */
+  /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
+  /* translate는 본인의 크기 기준으로 작동한다. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 모달창 디자인 */
+  background-color: rgba(45, 44, 44, 0.605);
+}
+
+
+.topbox {
+  padding: 10px;
+  background-color: white;
+  width: 600px;
+  height: 600px;
+  flex-direction: column;
+  border-radius: 20px;
+
+  // margin-top: 25%;
+  // margin-left: 50%;
+  // transform: translate(-50%, -50%);
+  h3 {
+    margin-left: 10px;
+  }
+
+}
+
+.contents {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  button {
+    margin: 20px;
+    padding: 5px;
+    border-radius: 8px;
+    width: 90%;
+    height: 40px;
+    border: none;
+    background-color: #8bbbf2;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #4E84C1;
+
+    }
+  }
+}
+
+.topbox__div {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // display: inline-flex;
+}
+
+.topbox__divspen {
+  width: 88%;
+  margin: 10px;
+  background-color: #e6e5e5;
+  display: flex;
+  padding: 10px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.labelst {
+  width: 300px;
+}
+
+.desinput {
+  height: 40px;
+  width: 90%;
+  outline: none;
+  border: 1px solid #cecdcd;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.dirinput {
+  height: 20px;
+  width: 90%;
+  outline: none;
+  border: 1px solid #cecdcd;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.selec__stack {
+  height: 20px;
+  width: 90%;
+  outline: none;
+  border: 1px solid #cecdcd;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.create__title {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    font-size: large;
+  }
+}
+
+.menu_li {
+  list-style: none;
+  height: 25px;
+  border-radius: 10px;
+  padding: 10px;
+  padding-left: 25px;
+  border: 1px solid #cecdcd;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background-color: rgba(203, 212, 219, 0.89);
+  }
+
+}
+.menucontainer {
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  // transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 300px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3%;
+  outline: none;
+  border: 1px solid #cecdcd;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

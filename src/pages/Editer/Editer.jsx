@@ -19,7 +19,7 @@ const Editer = () => {
     <div className={styles.mainpage}>
       <Header setIsDarkMode={setIsDarkMode}/>
       <div className={styles.layout}>
-        <FileSidebar isDarkMode={isDarkMode}/>
+        <FileSidebar isDarkMode={isDarkMode} project={state} />
         {/* <Directory /> */}
         <CodeEditor isDarkMode={isDarkMode}/>
       </div>
