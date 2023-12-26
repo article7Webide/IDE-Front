@@ -16,7 +16,7 @@ const SignUp = () => {
   });
 
   // 아이디 중복 확인
-  const [isIdUnique, setIsIdUnique] = useState(false);
+  // const [isIdUnique, setIsIdUnique] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,36 +24,36 @@ const SignUp = () => {
   };
 
   // 아이디 중복 검사 함수
-  const confirmID = async () => {
-    const userid = registerValues.userId;
+  // const confirmID = async () => {
+  //   const userid = registerValues.userId;
 
-    if (userid) {
-      //api 연결
-      try {
-        const response = await axios.post(
-          'hhttp://15.165.235.236/auth/signup',
-          { userid }
-        );
+  //   if (userid) {
+  //     //api 연결
+  //     try {
+  //       const response = await axios.post(
+  //         'hhttp://15.165.235.236/auth/signup',
+  //         { userid }
+  //       );
 
-        if (response.data.status === 200) {   //백엔드로 보낸 데이터 결과 200일 경우
-          alert('사용 가능한 아이디입니다.');
-          setIsIdUnique(true);    // 사용가능한 아이디 일 경우 true로 변경
-        } else if (response.data.status === 400) {
-          alert('이미 존재하는 아이디입니다.');
-          setIsIdUnique(false);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
+  //       if (response.data.status === 200) {   //백엔드로 보낸 데이터 결과 200일 경우
+  //         alert('사용 가능한 아이디입니다.');
+  //         setIsIdUnique(true);    // 사용가능한 아이디 일 경우 true로 변경
+  //       } else if (response.data.status === 400) {
+  //         alert('이미 존재하는 아이디입니다.');
+  //         setIsIdUnique(false);
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // };
 
   // 회원가입 폼 제출 함수
   const checkSignup = async () => {
-    if (!isIdUnique) {    // 중복확인을 하지 않았다면(IisIdUnique가 false)
-      alert("아이디 중복 확인 해주세요.");
-      return;
-    }
+    // if (!isIdUnique) {    // 중복확인을 하지 않았다면(IisIdUnique가 false)
+    //   alert("아이디 중복 확인 해주세요.");
+    //   return;
+    // }
     //비밀번호 일치 확인
     if (registerValues.password !== registerValues.checkpw) {
       alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
@@ -100,7 +100,7 @@ const SignUp = () => {
               type='text'
               onChange={handleInputChange}
             />
-            <button className={styles.checkbtn} onClick={confirmID}>중복확인</button>
+            {/* <button className={styles.checkbtn} onClick={confirmID}>중복확인</button> */}
           </div>
 
           <input
