@@ -60,7 +60,7 @@ const SignUp = () => {
       return;
     }
     //모든 필드가 채워져 있는지 확인
-    if (!registerValues.userId || !registerValues.password || !registerValues.name) {
+    if (!registerValues.userId || !registerValues.password || !registerValues.nickname) {
       alert("모든 사항을 입력해주세요");
       return;
     }
