@@ -1,59 +1,48 @@
-name: Front Deployment
-
-# trigger가 되길 바라는 action을 입력합니다. push / pull_request가 있습니다.
-# 저는 develop 브랜치에 push가 되면 actions을 실행하도록 설정했습니다.
-on:
+name: Deploy # Workflow 이름
+on: # Event 감지
   push:
     branches:
-      - main
-
-# 위의 이벤트가 트리거되면 실행할 목록입니다.
+      - main # 해당 브랜치의 푸쉬가 일어날 때 CI/CD를 진행하겠다는 뜻
 jobs:
   build:
-    name: react build & deploy
-    # runner가 실행될 환경을 지정합니다.
-    runs-on: ubuntu-latest
-
-    # name은 단계별로 실행되는 액션들의 설명을 담은 것으로, 나중에 github action에서 workflow에 표시됩니다.
-    # uses 키워드로 Action을 불러올 수 있습니다.
+    runs-on: ubuntu-22.04
     steps:
+      - name: Checkout source code. # Repo checkout
+        uses: actions/checkout@v2
 
-      # 레포지토리에 접근하여 CI서버로 코드를 내려받는 과정입니다.
-      - name: checkout Github Action
-        uses: actions/checkout@v3
+      - name: Check Node v # Node v 확인
+        run: node -v
 
-      # workflow가 실행될 때 필요한 파일 중에서 거의 바뀌지 않는 파일들을 GitHub의 캐시에 올려놓고 CI 서버로 내려받습니다.
-      # 프로젝트에서 자주 바뀌지 않는 수많은 패키지를 매번 다운받아 올리면 시간도 오래걸리고 네트워크 대역폭을 많이 사용하게됩니다.
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: install npm dependencies
+      - name: Install Dependencies # 의존 파일 설치
         run: npm install
 
-      - name: react build
-        run: CI='false' npm run build
+      - name: Build # React Build
+        run: npm run build
+        env:
+          CI: ""
 
-      # aws에 접근하기 위한 권한을 받아옵니다.
+      - name: zip create
+        # zip 파일을 만듭니다(파일명은 자유, 대신 아래 workflow에 적을 파일명과 동일하게 맞춰주세요).
+        run: zip -qq -r ./build-fe.zip .
+        shell: bash
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      # S3에 build 파일을 올립니다.
-      - name: Upload to S3
+      - name: Upload to S3 # Upload build file to S3
         env:
-          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 sync \
-            ./build s3://$BUCKET_NAME
+          aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://webide-front-bucket/build-fe.zip
+          
+      - name: Deploy # Deploy to EC2
+        run: aws deploy create-deployment
+          --application-name front-deploy
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name front-deploy
+          --s3-location bucket=webide-front-bucket,key=build-fe.zip,bundleType=zip
