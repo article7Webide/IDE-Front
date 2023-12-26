@@ -5,7 +5,7 @@ import { IoMdMenu } from "react-icons/io";
 import MainSiderbar from '../../components/main-sidebar/MainSiderbar'
 import axios from 'axios';
 import Directory from '../../components/directory/Directory';
-import CreateDir from '../../components/directory/create-directory/CreateDir';
+import CreateDir from '../CreateDirectory/CreateDir';
 import { FaSliders } from 'react-icons/fa6';
 
 const MainPage = () => {
