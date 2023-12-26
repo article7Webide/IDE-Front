@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Directory.module.scss'
 import Items from './directory-items/Items'
-import CreateDir from './create-directory/CreateDir';
 
 const Directory = ({ projects }) => {
 

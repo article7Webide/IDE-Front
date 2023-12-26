@@ -1,23 +1,63 @@
 .container {
   position: absolute;
   border-radius: 8px;
-  padding: 10px;
+  // padding: 10px;
   right: 2%;
   top: 100px;
   width: 300px;
   height: 500px;
   z-index: 100;
-  background-color: aquamarine;
+  background-color: #25262c;
 }
 
 .exitBtn {
   border: none;
-  background-color: white;
+  color: white;
+  background-color: #6978d1;
   font-weight: 600;
   font-size: large;
 }
 
 .chatTitle {
+  color: white;
+  display: flex;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  justify-content: space-between;
+  background-color: #6978d1;
+  padding: 5px;
+  align-items: center;
+}  
+
+.textcontainer {
+  display: flex;
+  margin: 0px 10px 10px 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textlist {
+  height: 380px;
+  width: 300px;
+  background-color: #25262c;
+}
+
+.text {
+  height: 79px;
+  width: 300px;
+  background-color: white;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
   display: flex;
   justify-content: space-between;
+  textarea {
+    border: none;
+    padding: 5px;
+    resize: none;
+    width: 280px;
+  }
+
+  textarea:focus {
+    outline: none;
+  }
 }

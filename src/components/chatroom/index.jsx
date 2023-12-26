@@ -49,27 +49,32 @@ const ChatRoom = ({ openChat, setOpenChat, handleChat }) => {
         y: chatPos.y
       }}>
       <div className={styles.chatTitle}>
-        index
+        chat
         <button className={styles.exitBtn}>
-        <IoCloseOutline onClick={handleChat} size={24} />
-      </button>
+          <IoCloseOutline onClick={handleChat} size={24} />
+        </button>
       </div>
-      
+      <div className={styles.textcontainer}>
+        <div className={styles.textlist}>
 
-      <div className={styles.text}>
-        <input
-          type="text"
-          placeholder="메시지를 입력해주세요."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyUp={(e) => {
-            if (e.key === 'Enter') {
-              // sendMessage();
-            }
-          }}
-        />
-        <button onClick={sendMessage}>전송</button>
+        </div>
+
+        <div className={styles.text}>
+          <textarea
+            type="text"
+            placeholder="메시지를 입력해주세요."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === 'Enter') {
+                // sendMessage();
+              }
+            }}
+          />
+          <button onClick={sendMessage}>전송</button>
+        </div>
       </div>
+
 
     </animated.div>
   )
