@@ -37,13 +37,9 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: install npm dependencies
-        run: npm install
-
-      - name: install npm axios
-        run: npm install axios react-router-dom react-redux react-icons sass @reduxjs/toolkit @monaco-editor/react monaco-themes react-modal
-
-      - name: install npm msw
-        run: npm install msw@1.3.2 --save -dev
+      - run: npm install
+      - run: npm install axios react-router-dom react-redux react-icons sass @reduxjs/toolkit @monaco-editor/react monaco-themes react-modal
+      - run: npm install msw@1.3.2 --save -dev
 
       - name: react build
         run: npm run build
