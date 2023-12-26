@@ -3,12 +3,10 @@ import styles from './CreateDir.module.scss'
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 const CreateDir = ({ modalIsOpen, handleModal }) => {
 
   // const [selected, setSelected] = useState("public");
-  const navigate = useNavigate();
   const [registerDir, setRegisterDir] = useState({
     folder_name: "",
     folder_description: "",
@@ -37,7 +35,7 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
   const handleCreate = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/projects",
+        "http://15.165.235.236/auth/projects",
         {
           folder_name: registerDir.folder_name,
         }
