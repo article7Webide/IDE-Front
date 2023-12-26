@@ -8,10 +8,12 @@ import { LiaToggleOnSolid,LiaToggleOffSolid  } from "react-icons/lia";
 import { IoShareSocial } from "react-icons/io5";import { useNavigate } from 'react-router-dom';
 ;
 
-const Header = () => {
+const Header = ({openChat,setOpenChat,handleChat}) => {
 
   const [menuView, setMenuView] = useState(false);
   const navigate = useNavigate();
+
+
 
   const gomain=()=> {
     navigate('/main');
@@ -35,7 +37,7 @@ const Header = () => {
           <button className={styles.icons}>
             <IoShareSocial size={24} />
           </button>
-          <button className={styles.icons}>
+          <button className={styles.icons}  onClick={handleChat} openChat={openChat}>
             <FaMessage size={24} />
           </button>
           <button className={styles.icons}>

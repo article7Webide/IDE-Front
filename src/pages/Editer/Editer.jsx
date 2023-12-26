@@ -4,11 +4,19 @@ import styles from './Editer.module.scss'
 import Header from '../../components/header/Header'
 import CodeEditor from '../../components/editor/CodeEditor'
 import { useLocation } from 'react-router-dom'
+import ChatRoom from '../../components/chatroom'
 
 const Editer = () => {
 
   const {state} = useLocation();
+  const [openChat, setOpenChat] = useState(false);
+
   const [ isDarkMode, setIsDarkMode ] = useState(false);
+  const [code, setCode] = useState('');
+
+  const handleChat = () => {
+    setOpenChat(!openChat);
+  }
 
   
   useEffect(()=> {
@@ -17,11 +25,15 @@ const Editer = () => {
 
   return (
     <div className={styles.mainpage}>
-      <Header setIsDarkMode={setIsDarkMode}/>
+      <Header setIsDarkMode={setIsDarkMode} openChat={openChat} setOpenChat={setOpenChat} handleChat={handleChat}/>
       <div className={styles.layout}>
         <FileSidebar isDarkMode={isDarkMode} project={state} />
         {/* <Directory /> */}
-        <CodeEditor isDarkMode={isDarkMode}/>
+        <CodeEditor 
+        isDarkMode={isDarkMode}
+        value={code}
+        />
+        {openChat&& <ChatRoom openChat={openChat} setOpenChat={setOpenChat} handleChat={handleChat} />}
       </div>
 
     </div>

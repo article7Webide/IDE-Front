@@ -67,7 +67,6 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
           <h3>컨테이너 생성하기</h3>
           <button>
             <IoCloseOutline onClick={handleModal} size={24} />
-
           </button>
 
         </div>
