@@ -69,7 +69,7 @@ const SignUp = () => {
       const response = await axios.post(
         "http://13.125.30.49:8080/auth/signup",   
         {
-          Id: registerValues.userId,
+          id: registerValues.userId,
           password: registerValues.password,
           // nickname: registerValues.nickname,
         }
@@ -81,8 +81,19 @@ const SignUp = () => {
         alert("회원가입에 실패하였습니다.");
       }
     } catch (error) {
-      console.error("Signup error!", error);
-      alert("회원가입 중 오류가 발생하였습니다.");
+      //로그인 에러 표시
+      console.error("signup Error:", error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        // 서버에서 에러 메시지를 제공하는 경우
+        alert(error.response.data.message);
+      } else {
+        // 그 외의 클라이언트 측에서 잡힌 에러
+        alert("회원가입에 실패하였습니다. 다시 시도해 주세요.");
+      }
     }
   };
 
