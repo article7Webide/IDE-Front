@@ -39,3 +39,10 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
         run: |
           aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://webide-front-bucket/build-fe.zip
+          
+      - name: Deploy # Deploy to EC2
+        run: aws deploy create-deployment
+          --application-name front-deploy
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name front-deploy
+          --s3-location bucket=webide-front-bucket,key=build-fe.zip,bundleType=zip
