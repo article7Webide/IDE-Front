@@ -67,7 +67,7 @@ const SignUp = () => {
     //api 연결
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/signup",   
+        "http://www.prj7webide.n-e.kr/auth/signup",   
         {
           Id: registerValues.userId,
           password: registerValues.password,

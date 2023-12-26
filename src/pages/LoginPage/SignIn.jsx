@@ -34,7 +34,7 @@ const SignIn = (props) => {
     //api 연결
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/login",
+        "http://www.prj7webide.n-e.kr/auth/login",
         {
           userId: loginValues.userId,
           password: loginValues.password,
