@@ -67,7 +67,7 @@ const SignUp = () => {
     //api 연결
     try {
       const response = await axios.post(
-        "http://15.165.235.236/auth/signup",   
+        "http://13.125.30.49:8080/auth/signup",   
         {
           Id: registerValues.userId,
           password: registerValues.password,

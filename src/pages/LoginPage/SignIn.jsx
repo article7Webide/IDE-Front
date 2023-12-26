@@ -34,7 +34,7 @@ const SignIn = (props) => {
     //api 연결
     try {
       const response = await axios.post(
-        "http://15.165.235.236/auth/login",
+        "http://13.125.30.49:8080/auth/login",
         {
           userId: loginValues.userId,
           password: loginValues.password,
