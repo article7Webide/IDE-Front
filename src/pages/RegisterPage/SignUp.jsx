@@ -31,7 +31,7 @@ const SignUp = () => {
       //api 연결
       try {
         const response = await axios.post(
-          'https://localhost:3000/api/auth/signup',
+          'http://localhost:8080/auth/signup',
           { userid }
         );
 
@@ -69,9 +69,9 @@ const SignUp = () => {
       const response = await axios.post(
         "http://localhost:8080/auth/signup",   
         {
-          userId: registerValues.userId,
+          Id: registerValues.userId,
           password: registerValues.password,
-          nickname: registerValues.nickname,
+          // nickname: registerValues.nickname,
         }
       );
       if (response.data && response.data.message) {

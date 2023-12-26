@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import styles from './SignIn.module.scss';
 import { useNavigate } from "react-router-dom";
-import { response } from 'msw';
 
 const SignIn = (props) => {
 
@@ -19,8 +18,6 @@ const SignIn = (props) => {
     setLoginValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
-  const [errorMessage, setErrorMessage] = useState("");
-
   const checkSignIn = async () => {
     if (!loginValues.userId && !loginValues.password) {
       alert("아이디를 입력해주세요")
@@ -36,36 +33,27 @@ const SignIn = (props) => {
     }
     //api 연결
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/login",
+      const response = await axios.post(
+        "http://localhost:8080/auth/login",
         {
           userId: loginValues.userId,
           password: loginValues.password,
         }
       );
-      if (res.status === 200) {
+      if (response.status === 200) {
         // 성공 로직
-        if (res.data) {
-          const user = res.data[0];
 
-          localStorage.setItem('user', JSON.stringify(user))
+        if (response.data && response.data.accessToken) {
+          localStorage.setItem("accessToken", response.data.accessToken);
+          localStorage.setItem('user', JSON.stringify(response.data))
           navigate("/main");
         } else {
           alert("로그인에 실패했습니다. 다시 시도해 주세요.");
         }
-
-
-        // if (response.data && response.data.accessToken) {
-        //   localStorage.setItem("accessToken", response.data.accessToken);
-        //   localStorage.setItem('user', JSON.stringify(response.data))
-        //   navigate("/main");
-        // } else {
-        //   alert("로그인에 실패했습니다. 다시 시도해 주세요.");
-        // }
         
       } else if (response.status === 401) {
         // 권한 없음, 로그인 실패 로직
-        alert("이메일 또는 비밀번호가 일치하지 않습니다.");
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
       } else {
         // 기타 에러 로직
         alert("서버에서 오류가 발생하였습니다. 다시 시도해 주세요.");
@@ -107,9 +95,6 @@ const SignIn = (props) => {
             placeholder="비밀번호를 입력해주세요"
             onChange={handleInputChange}
           />
-          {errorMessage && (
-            <p>{errorMessage}</p>
-          )}
           <button type="submit" className={styles.registerbtn} onClick={checkSignIn}>로그인</button>
           <div className={styles.already_member}>
             아직 회원이 아닙니까?
