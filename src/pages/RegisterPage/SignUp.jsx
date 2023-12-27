@@ -14,6 +14,9 @@ const SignUp = () => {
     checkpw: "",
     nickname: "",
   });
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+  const passwordRegEx = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-z]{1,50})(?=.*[A-Z]{1,50}).{8,16}$/;
+
 
   // 아이디 중복 확인
   // const [isIdUnique, setIsIdUnique] = useState(false);
@@ -21,6 +24,10 @@ const SignUp = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setRegisterValues((prevValues) => ({ ...prevValues, [name]: value }));
+  };
+
+  const delSpace = (data) => {
+    return data.replace(/\s/g, '');
   };
 
   // 아이디 중복 검사 함수
@@ -50,6 +57,10 @@ const SignUp = () => {
 
   // 회원가입 폼 제출 함수
   const checkSignup = async () => {
+    delSpace(registerValues.email);
+    delSpace(registerValues.password);
+    delSpace(registerValues.nickname);
+    
     // if (!isIdUnique) {    // 중복확인을 하지 않았다면(IisIdUnique가 false)
     //   alert("아이디 중복 확인 해주세요.");
     //   return;
@@ -62,6 +73,14 @@ const SignUp = () => {
     //모든 필드가 채워져 있는지 확인
     if (!registerValues.email || !registerValues.password || !registerValues.nickname) {
       alert("모든 사항을 입력해주세요");
+      return;
+    }
+    if(!emailRegEx.test(registerValues.email)) {
+      alert("올바른 이메일 형식이 아닙니다.");
+      return;
+    }
+    if(!passwordRegEx.test(registerValues.password)) {
+      alert("비밀번호가 8~16자의 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.");
       return;
     }
     //api 연결
