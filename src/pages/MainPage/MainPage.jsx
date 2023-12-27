@@ -43,7 +43,7 @@ const MainPage = () => {
     if(!getProject) {
       const fetchUserData = async () => {
         try {
-          const res = await axios.get("http://13.125.30.49:8080/auth/project");
+          const res = await axios.get("http://13.125.30.49:8080/auth/projects");
           localStorage.setItem('project', JSON.stringify(res.data));
           setProjects(res.data);
         } catch (error) {

@@ -35,7 +35,7 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
   const handleCreate = async () => {
     try {
       const res = await axios.post(
-        "http://13.125.30.49:8080/auth/project",
+        "http://13.125.30.49:8080/auth/projects",
         {
           folder_name: registerDir.folder_name,
         }

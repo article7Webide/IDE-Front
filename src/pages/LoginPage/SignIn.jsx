@@ -36,15 +36,21 @@ const SignIn = (props) => {
       const response = await axios.post(
         "http://13.125.30.49:8080/auth/login",
         {
-          userId: loginValues.userId,
+          id: loginValues.userId,
           password: loginValues.password,
         }
       );
       if (response.status === 200) {
         // 성공 로직
 
-        if (response.data && response.data.accessToken) {
-          localStorage.setItem("accessToken", response.data.accessToken);
+        // if (response.data && response.data.accessToken) {
+        //   localStorage.setItem("accessToken", response.data.accessToken);
+        //   localStorage.setItem('user', JSON.stringify(response.data))
+        //   navigate("/main");
+        // } else {
+        //   alert("로그인에 실패했습니다. 다시 시도해 주세요.");
+        // }
+        if (response.data) {
           localStorage.setItem('user', JSON.stringify(response.data))
           navigate("/main");
         } else {
