@@ -43,19 +43,19 @@ const SignIn = (props) => {
       if (response.status === 200) {
         // 성공 로직
 
-        // if (response.data && response.data.accessToken) {
-        //   localStorage.setItem("accessToken", response.data.accessToken);
-        //   localStorage.setItem('user', JSON.stringify(response.data))
-        //   navigate("/main");
-        // } else {
-        //   alert("로그인에 실패했습니다. 다시 시도해 주세요.");
-        // }
-        if (response.data) {
+        if (response.data && response.data.accessToken) {
+          localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem('user', JSON.stringify(response.data))
           navigate("/main");
         } else {
           alert("로그인에 실패했습니다. 다시 시도해 주세요.");
         }
+        // if (response.data) {
+        //   localStorage.setItem('user', JSON.stringify(response.data))
+        //   navigate("/main");
+        // } else {
+        //   alert("로그인에 실패했습니다. 다시 시도해 주세요.");
+        // }
         
       } else if (response.status === 401) {
         // 권한 없음, 로그인 실패 로직
