@@ -7,10 +7,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { worker } from './mocks/browser';
 
 
-// // start
-// if(process.env.NODE_ENV === 'development') { // 개발에서만 msw 동작
-//   worker.start();
-// }
+// start
+if(process.env.NODE_ENV === 'development') { // 개발에서만 msw 동작
+  worker.start();
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
