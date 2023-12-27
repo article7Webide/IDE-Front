@@ -11,7 +11,7 @@ import { FaSliders } from 'react-icons/fa6';
 const MainPage = () => {
   const [openSide, setOpenSide] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [projects,setProjects] =React.useState([]);
+  const [containers,setContainers] =React.useState([]);
   const [user, setUser] = useState(null);
   const [filter,setFilter] = useState(0);
   const filterTitle ={
@@ -32,14 +32,14 @@ const MainPage = () => {
   // 컨터이너 불러오기
   useEffect(() => {
 
-    const getProject = JSON.parse(localStorage.getItem("project"));
-    if(!getProject) {
+    const getContainer = JSON.parse(localStorage.getItem("containers"));
+    if(!getContainer) {
       const fetchUserData = async () => {
         try {
-          const res = await axios.get("http://13.125.30.49:8080/auth/projects");
-          localStorage.setItem('project', JSON.stringify(res.data));
-          setProjects(res.data);
-          console.log("load project", projects);
+          const response = await axios.get("http://13.125.30.49:8080/api/container/list");
+          localStorage.setItem('containers', JSON.stringify(response.data));
+          setContainers(response.data);
+          console.log("load container", );
 
         } catch (error) {
           console.error("Error fetching user data: ", error);
@@ -47,7 +47,7 @@ const MainPage = () => {
       };
       fetchUserData();
     } else {
-      setProjects(getProject);
+      setContainers(getContainer);
     }
     
   }, []);
@@ -67,7 +67,7 @@ const MainPage = () => {
           
         </div>
         <hr />
-        <Directory projects={projects}/>
+        <Directory containers={containers}/>
         
       </div>
 
