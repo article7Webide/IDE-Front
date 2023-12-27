@@ -12,11 +12,15 @@ const Editer = () => {
   const { state } = useLocation();
   const [openChat, setOpenChat] = useState(false);
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [code, setCode] = useState('');
 
   const handleChat = () => {
     setOpenChat(!openChat);
+  }
+
+  const handletoggle = () => {
+    setIsDarkMode(!isDarkMode);
   }
 
 
@@ -26,7 +30,9 @@ const Editer = () => {
 
   return (
     <div className={styles.mainpage}>
-      <Header setIsDarkMode={setIsDarkMode} openChat={openChat} setOpenChat={setOpenChat} handleChat={handleChat} />
+      <Header
+      isDarkMode={isDarkMode}
+      handletoggle={handletoggle} openChat={openChat} setOpenChat={setOpenChat} handleChat={handleChat} />
       <div className={styles.layout}>
         <FileSidebar isDarkMode={isDarkMode} project={state} />
         {/* <Directory /> */}

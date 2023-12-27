@@ -2,7 +2,7 @@ import {SockJS} from 'sockjs-client';
 import { messageService } from '../service/MessageService';
 import { Stomp } from '@stomp/stompjs';
 
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'http://13.125.30.49:8080/auth'  ;
 
 export default class MessageStore {
   constructor() {

@@ -8,7 +8,7 @@ import { LiaToggleOnSolid,LiaToggleOffSolid  } from "react-icons/lia";
 import { IoShareSocial } from "react-icons/io5";import { useNavigate } from 'react-router-dom';
 ;
 
-const Header = ({openChat,setOpenChat,handleChat}) => {
+const Header = ({openChat,setOpenChat,handleChat,isDarkMode,handletoggle}) => {
 
   const [menuView, setMenuView] = useState(false);
   const navigate = useNavigate();
@@ -26,8 +26,9 @@ const Header = ({openChat,setOpenChat,handleChat}) => {
           <button className={styles.icons} onClick={()=>{setMenuView(!menuView)}} > {/* 햄버거바 클릭시 view 상태 반대로 */}
             <IoMdMenu size={24} />
           </button>
-          <button className={styles.icons}>
-            <LiaToggleOnSolid size={24} />
+          <button className={styles.icons}
+          onClick={handletoggle}>
+            {isDarkMode?<LiaToggleOnSolid size={24} /> : <LiaToggleOffSolid size={24} />}
           </button>
         </div>
         <div className={styles.right_side}>
