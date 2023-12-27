@@ -20,13 +20,6 @@ const MainPage = () => {
     2: "공유받은 컨테이너",
   }
 
-  //projects가 변할때마다 실행
-  useEffect(() => {
-    //filter에 맞춰서 컨터이너 불러오기
-
-    console.log('Projects:', projects);
-  }, [projects]);
-
   //사이드바 열고 닫기
   const handleSide = () => {
     setOpenSide(!openSide);
@@ -46,6 +39,8 @@ const MainPage = () => {
           const res = await axios.get("http://13.125.30.49:8080/auth/projects");
           localStorage.setItem('project', JSON.stringify(res.data));
           setProjects(res.data);
+          console.log("load project", projects);
+
         } catch (error) {
           console.error("Error fetching user data: ", error);
         }

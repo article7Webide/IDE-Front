@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const SignIn = (props) => {
 
   const [loginValues, setLoginValues] = useState({
-    userId: "",
+    email: "",
     password: "",
   });
 
@@ -19,11 +19,11 @@ const SignIn = (props) => {
   };
 
   const checkSignIn = async () => {
-    if (!loginValues.userId && !loginValues.password) {
+    if (!loginValues.email && !loginValues.password) {
       alert("아이디를 입력해주세요")
       return
     }
-    if (!loginValues.userId) {
+    if (!loginValues.email) {
       alert("아이디를 입력해주세요")
       return
     }
@@ -36,7 +36,7 @@ const SignIn = (props) => {
       const response = await axios.post(
         "http://13.125.30.49:8080/auth/login",
         {
-          id: loginValues.userId,
+          email: loginValues.email,
           password: loginValues.password,
         }
       );
@@ -90,7 +90,7 @@ const SignIn = (props) => {
         <br />
         <div className={styles.formSignin}>
           <input
-            name='userId'
+            name='email'
             type='text'
             placeholder="아이디를 입력해주세요."
             onChange={handleInputChange}

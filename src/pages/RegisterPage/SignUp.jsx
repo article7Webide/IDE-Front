@@ -9,7 +9,7 @@ const SignUp = () => {
 
 
   const [registerValues, setRegisterValues] = useState({
-    userId: "",
+    email: "",
     password: "",
     checkpw: "",
     nickname: "",
@@ -31,7 +31,7 @@ const SignUp = () => {
   //     //api 연결
   //     try {
   //       const response = await axios.post(
-  //         'hhttp://15.165.235.236/auth/signup',
+  //         'http://13.125.30.49:8080/auth/signup',
   //         { userid }
   //       );
 
@@ -60,25 +60,27 @@ const SignUp = () => {
       return;
     }
     //모든 필드가 채워져 있는지 확인
-    if (!registerValues.userId || !registerValues.password || !registerValues.nickname) {
+    if (!registerValues.email || !registerValues.password || !registerValues.nickname) {
       alert("모든 사항을 입력해주세요");
       return;
     }
     //api 연결
     try {
       const response = await axios.post(
-        "http://13.125.30.49:8080/auth/signup",   
+        "http://13.125.30.49:8080/auth/signup",
         {
-          id: registerValues.userId,
+          email: registerValues.email,
           password: registerValues.password,
-          // nickname: registerValues.nickname,
+          nickname: registerValues.nickname,
         }
       );
-      if (response.data && response.data.message) {
-        alert(response.data.message);
-        navigate("/");
-      } else {
-        alert("회원가입에 실패하였습니다.");
+      if (response.status === 200) {
+        if (response.data) {
+          alert("회원가입 성공");
+          navigate("/");
+        } else {
+          alert("회원가입에 실패하였습니다.");
+        }
       }
     } catch (error) {
       //로그인 에러 표시
@@ -106,8 +108,8 @@ const SignUp = () => {
         <div className={styles.formSignup}>
           <div className={styles.idcheck}>
             <input
-              name='userId'
-              placeholder='아이디'
+              name='email'
+              placeholder='이메일'
               type='text'
               onChange={handleInputChange}
             />
