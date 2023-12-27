@@ -31,7 +31,7 @@ const dummyData = [
 
 export const projects = [
 
-  rest.get('/api/auth/projects', async (req, res, ctx) => {
+  rest.get('/auth/projects', async (req, res, ctx) => {
 
     return res(
       ctx.status(200),
@@ -39,7 +39,7 @@ export const projects = [
     );
   }),
 
-  rest.post('/api/auth/projects', async (req, res, ctx) => {
+  rest.post('/auth/projects', async (req, res, ctx) => {
 
     const newData = {
       directory_id: 4,
