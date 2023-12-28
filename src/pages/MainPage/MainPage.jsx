@@ -46,12 +46,14 @@ const MainPage = () => {
       };
       fetchUserData();
   
+      const userdata = localStorage.getItem("user");
+      setUser(userdata);
   }, []);
 
   return (
 
     <div className={styles.mainpage}>
-      {modalIsOpen && <CreateDir modalIsOpen={modalIsOpen} handleModal={handleModal} /> }
+      {modalIsOpen && <CreateDir modalIsOpen={modalIsOpen} handleModal={handleModal} user={user} /> }
 
       {openSide && <MainSiderbar handleSide={handleSide} setFilter={setFilter} filterTitle={filterTitle} />}
 
@@ -63,7 +65,7 @@ const MainPage = () => {
           
         </div>
         <hr />
-        <Directory containers={containers}/>
+        <Directory containers={containers} user={user}/>
         
       </div>
 

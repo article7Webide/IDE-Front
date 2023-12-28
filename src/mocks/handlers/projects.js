@@ -5,6 +5,7 @@ const dummyData = [
     directory_id: 1,
     directory_title: "test",
     member_idx: 1230,
+    containerMemo: "메모1",
     create_data: "2023-12-1",
     type: "public",
     stack: "Java",
@@ -13,6 +14,7 @@ const dummyData = [
     directory_id: 2,
     directory_title: "react-app",
     member_idx: 1230,
+    containerMemo: "메모2",
     create_data: "2023-12-10",
     type: "private",
     stack: "Python",
@@ -34,9 +36,10 @@ export const projects = [
   rest.post('http://13.125.30.49:8080/api/container/list', async (req, res, ctx) => {
 
     const newData = {
-      directory_id: 3,
-        directory_title: "create-test",
+        directory_id: 3,
+        containerNm: "create-test",
         member_idx: 1230,
+        containerMemo: "메모3",
         create_data: "2023-12-20",
         type: "private",
         stack: "Javascript",

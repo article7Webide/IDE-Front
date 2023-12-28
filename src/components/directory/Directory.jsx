@@ -8,7 +8,7 @@ const Directory = ({ containers }) => {
   return (
     <div className={styles.container}>
       {containers.map((container) => (
-        <Items key={container.drectory_id} project={container} type={container.type} title={container.directory_title}  />
+        <Items key={container.drectory_id} project={container} type={container.type} title={container.containerNm}  />
       ))}
     </div>
   )

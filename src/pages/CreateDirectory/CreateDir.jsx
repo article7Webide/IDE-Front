@@ -4,14 +4,16 @@ import { IoCloseOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
 
-const CreateDir = ({ modalIsOpen, handleModal }) => {
+const CreateDir = ({ modalIsOpen, handleModal,user }) => {
 
   // const [selected, setSelected] = useState("public");
   const [registerDir, setRegisterDir] = useState({
-    containerName: "",
+    containerNm:"",
     containerMemo: "",
     scope: "",
     stack: "",
+    regId: user.userId,
+    modId: "",
   });
 
   const stacks = ["Java", "Python", "C++", "Javascript"];
@@ -34,10 +36,13 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
 
   const handleCreate = async () => {
     try {
-      const res = await axios.post(
-        "http://13.125.30.49:8080/auth/projects",
+      const res = await axios.put(
+        "http://13.125.30.49:8080/api/container/insert",
         {
-          containerName: registerDir.folder_name,
+          containerNm: registerDir.containerNm,
+          containerMemo: registerDir.containerMemo,
+          regId: registerDir.regId,
+          modId: registerDir.modId,
         }
       );
       if (res.status === 201) {
@@ -75,7 +80,7 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
             <input
               type='text'
               name='containerName'
-              value={registerDir.containerName}
+              value={registerDir.containerNm}
               onChange={handleChange}
               className={styles.dirinput}
             />
