@@ -8,8 +8,8 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
 
   // const [selected, setSelected] = useState("public");
   const [registerDir, setRegisterDir] = useState({
-    folder_name: "",
-    folder_description: "",
+    containerName: "",
+    containerMemo: "",
     scope: "",
     stack: "",
   });
@@ -37,7 +37,7 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
       const res = await axios.post(
         "http://13.125.30.49:8080/auth/projects",
         {
-          folder_name: registerDir.folder_name,
+          containerName: registerDir.folder_name,
         }
       );
       if (res.status === 201) {
@@ -74,8 +74,8 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
             <label className={styles.labelst}>이름</label>
             <input
               type='text'
-              name='folder_name'
-              value={registerDir.folder_name}
+              name='containerName'
+              value={registerDir.containerName}
               onChange={handleChange}
               className={styles.dirinput}
             />
@@ -84,8 +84,8 @@ const CreateDir = ({ modalIsOpen, handleModal }) => {
             <label className={styles.labelst}>설명</label>
             <input
               type='text'
-              name='folder_description'
-              value={registerDir.folder_description}
+              name='containerMemo'
+              value={registerDir.containerMemo}
               onChange={handleChange}
               className={styles.desinput}
             />

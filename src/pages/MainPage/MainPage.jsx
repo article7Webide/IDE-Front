@@ -20,6 +20,8 @@ const MainPage = () => {
     2: "공유받은 컨테이너",
   }
 
+  const baseUrl = `http://13.125.30.49:8080`
+
   //사이드바 열고 닫기
   const handleSide = () => {
     setOpenSide(!openSide);
@@ -31,12 +33,9 @@ const MainPage = () => {
 
   // 컨터이너 불러오기
   useEffect(() => {
-
-    const getContainer = JSON.parse(localStorage.getItem("containers"));
-    if(!getContainer) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get("http://13.125.30.49:8080/api/container/list");
+          const response = await axios.get(`${baseUrl}/api/container/list`);
           localStorage.setItem('containers', JSON.stringify(response.data));
           setContainers(response.data);
           console.log("load container", );
@@ -46,10 +45,7 @@ const MainPage = () => {
         }
       };
       fetchUserData();
-    } else {
-      setContainers(getContainer);
-    }
-    
+  
   }, []);
 
   return (

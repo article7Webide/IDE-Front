@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import styles from './Directory.module.scss'
 import Items from './directory-items/Items'
 
-const Directory = ({ projects }) => {
+const Directory = ({ containers }) => {
 
 
   return (
     <div className={styles.container}>
-      {projects.map((project) => (
-        <Items key={project.drectory_id} project={project} type={project.type} title={project.directory_title}  />
+      {containers.map((container) => (
+        <Items key={container.drectory_id} project={container} type={container.type} title={container.directory_title}  />
       ))}
     </div>
   )
